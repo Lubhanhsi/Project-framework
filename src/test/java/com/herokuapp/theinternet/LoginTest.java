@@ -2,7 +2,6 @@ package com.herokuapp.theinternet;
 import org.testng.annotations.*;
 import pages.BaseMethods;
 import base.BaseTest;
-import pages.BaseMethods;
 
 public class LoginTest extends BaseTest{
     BaseMethods base;
@@ -13,7 +12,6 @@ public class LoginTest extends BaseTest{
         String formAuthXpath="//a[text()='Form Authentication']";
         String loginSuccessTextXpath="//div[@id='flash']";
         base = new BaseMethods(driver);
-        setUp();
         base.openURL(url);
         base.clickByXpath(formAuthXpath);
         base.enterById("username",uname);

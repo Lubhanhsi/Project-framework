@@ -11,6 +11,7 @@ public class ChromeDriverFactory {
 
         //Maximize window
         driver.manage().window().maximize();
+        System.out.println("driver opened");
         return driver;
     }
 }
