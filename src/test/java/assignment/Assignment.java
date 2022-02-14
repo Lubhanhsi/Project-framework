@@ -1,16 +1,18 @@
 package assignment;
 
 import base.BaseTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.BaseMethods;
+
 
 public class Assignment extends BaseTest {
 
     BaseMethods base;
     String url="https://the-internet.herokuapp.com/";
-    @Test
+    @Test()
     public void checkBoxFunctionality() throws InterruptedException {
-        base= new BaseMethods(driver);
+        base= new BaseMethods(driver , test);
         String checkBoxLinkXpath="//a[text()='Checkboxes']";
         String checkBoxOnPage= "//input[@type='checkbox']";
         base.openURL(url);
@@ -20,7 +22,7 @@ public class Assignment extends BaseTest {
         base.navigateBackFromCurrentPage();
     }
 
-    @Test
+   /* @Test
     public void dragAndDropFunctionality() throws InterruptedException {
         base= new BaseMethods(driver);
         String dragAndDropXpath= "//a[text()='Drag and Drop']";
@@ -68,5 +70,5 @@ public class Assignment extends BaseTest {
         base.windowSwitching();
 
     }
-
+*/
     }

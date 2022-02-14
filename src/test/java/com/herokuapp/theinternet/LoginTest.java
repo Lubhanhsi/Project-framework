@@ -11,7 +11,7 @@ public class LoginTest extends BaseTest{
         String url="https://the-internet.herokuapp.com/";
         String formAuthXpath="//a[text()='Form Authentication']";
         String loginSuccessTextXpath="//div[@id='flash']";
-        base = new BaseMethods(driver);
+//        base = new BaseMethods(driver);
         base.openURL(url);
         base.clickByXpath(formAuthXpath);
         base.enterById("username",uname);

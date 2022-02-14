@@ -1,21 +1,23 @@
 package pages;
 
+import base.Reporter;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
-import javax.swing.*;
 import java.util.Set;
 
-public class BaseMethods {
+public class BaseMethods extends Reporter {
     WebDriver driver;
-    public BaseMethods(WebDriver driver){
+    ExtentTest test;
+    public BaseMethods(WebDriver driver, ExtentTest test){
         this.driver=driver;
+        this.test = test;
     }
     public void openURL(String url){
         driver.get(url);
@@ -24,6 +26,7 @@ public class BaseMethods {
     public void navigateBackFromCurrentPage() throws InterruptedException {
         Thread.sleep(500);
         driver.navigate().back();
+        test.log(Status.PASS,"Back to previous page");
         System.out.println("Back to previous page");
         Thread.sleep(500);
     }
@@ -32,6 +35,7 @@ public class BaseMethods {
         WebElement element = driver.findElement(By.xpath(xpath));
         String textOfElement=element.getText();
         element.click();
+        test.log(Status.PASS,textOfElement+" is clicked");
         System.out.println(textOfElement+" is clicked");
     }
     public void enterByXpath(String xpath, String value){
@@ -75,6 +79,7 @@ public class BaseMethods {
     public void selectCheckBoxesByXpath(String xpath, int num) throws InterruptedException {
         Thread.sleep(1000);
         driver.findElement(By.xpath(xpath+"["+num+"]")).click();
+        test.log(Status.PASS, "CheckBox: "+num+" is clicked");
         System.out.println("CheckBox: "+num+" is clicked");
     }
     public void dragBox1ToBox2(String box1Xpath, String box2Xpath) throws InterruptedException {
