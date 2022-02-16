@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-02-15T16:32:42 IST" name="AllTest" finished-at="2022-02-15T16:33:26 IST" duration-ms="43703">
+    <groups>
+    </groups>
+    <test started-at="2022-02-15T16:32:42 IST" name="positiveTest" finished-at="2022-02-15T16:33:12 IST" duration-ms="29141">
+      <class name="com.herokuapp.theinternet.PositiveTest">
+        <test-method signature="loginTest()[pri:0, instance:com.herokuapp.theinternet.PositiveTest@babe5517]" started-at="2022-02-15T16:32:42 IST" name="loginTest" finished-at="2022-02-15T16:33:11 IST" duration-ms="29041" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+      </class> <!-- com.herokuapp.theinternet.PositiveTest -->
+    </test> <!-- positiveTest -->
+    <test started-at="2022-02-15T16:33:17 IST" name="negativeTestWrongPassword" finished-at="2022-02-15T16:33:26 IST" duration-ms="9531">
+      <class name="com.herokuapp.theinternet.NegativeTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.herokuapp.theinternet.NegativeTest@9750e2a9]" started-at="2022-02-15T16:33:17 IST" name="setUp" finished-at="2022-02-15T16:33:19 IST" duration-ms="1960" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="loginFailWrongPassword(java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:com.herokuapp.theinternet.NegativeTest@9750e2a9]" started-at="2022-02-15T16:33:19 IST" name="loginFailWrongPassword" finished-at="2022-02-15T16:33:26 IST" duration-ms="7423" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[tomsmith]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[12345]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Your password is invalid!]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginFailWrongPassword -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.herokuapp.theinternet.NegativeTest@9750e2a9]" started-at="2022-02-15T16:33:26 IST" name="tearDown" finished-at="2022-02-15T16:33:26 IST" duration-ms="107" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.herokuapp.theinternet.NegativeTest -->
+    </test> <!-- negativeTestWrongPassword -->
+  </suite> <!-- AllTest -->
+</testng-results>

@@ -1,0 +1,4 @@
+pages/BaseMethods.class
+base/ChromeDriverFactory.class
+base/Reporter.class
+base/BaseTest.class

@@ -2,11 +2,14 @@ package base;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,15 +18,14 @@ import java.util.Date;
 import java.util.Random;
 
 public class Reporter {
-    WebDriver driver;
     ExtentSparkReporter sparkReporter;
     ExtentReports report;
     ExtentTest test;
-    public ExtentTest startTestReport(){
+    public ExtentTest startTestReport(String name){
         report = new ExtentReports();
-        sparkReporter = new ExtentSparkReporter("./Reports/Testcasename"+generateRandomNumber());
+        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/Reports/"+name);
         report.attachReporter(sparkReporter);
-        test = report.createTest("Testcasename");
+        test = report.createTest(name);
         return test;
     }
     public int generateRandomNumber(){
@@ -31,14 +33,20 @@ public class Reporter {
         int number = random.nextInt(2000);
         return number;
     }
-    public static String getScreenShot(WebDriver driver, String name) throws IOException {
+    public static String getScreenShot(WebDriver driver) throws IOException {
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        String destination = System.getProperty("./ScreenShots"+date+".png");
-        File finalDestination = new File(destination);
+        File finalDestination = new File(System.getProperty("user.dir")+"/Reports/ScreenShots/image"+date+".jpg");
         FileUtils.copyFile(source,finalDestination);
-        return destination;
+        return finalDestination.getAbsolutePath();
+    }
+    public void reportSteps(ITestResult result, WebDriver driver) throws IOException {
+        if(result.getStatus() == ITestResult.SUCCESS){
+            test.log(Status.PASS, "Passed: "+result.getName());
+            String screenPath = Reporter.getScreenShot(driver);
+            test.log(Status.PASS, MediaEntityBuilder.createScreenCaptureFromPath(screenPath).build());
+        }
     }
     public void flushReport(){
         report.flush();

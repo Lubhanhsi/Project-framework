@@ -1,7 +1,6 @@
 package assignment;
 
 import base.BaseTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.BaseMethods;
 
@@ -19,12 +18,12 @@ public class Assignment extends BaseTest {
         base.clickByXpath(checkBoxLinkXpath);
         base.selectCheckBoxesByXpath(checkBoxOnPage, 1);
         base.selectCheckBoxesByXpath(checkBoxOnPage, 2);
-        base.navigateBackFromCurrentPage();
+//      base.navigateBackFromCurrentPage();
     }
 
-   /* @Test
+  @Test
     public void dragAndDropFunctionality() throws InterruptedException {
-        base= new BaseMethods(driver);
+        base= new BaseMethods(driver , test);
         String dragAndDropXpath= "//a[text()='Drag and Drop']";
         String boxesXpath="//h3[text()='Drag and Drop']/parent::div/div/child::div";
         base.openURL(url);
@@ -32,7 +31,7 @@ public class Assignment extends BaseTest {
         base.dragBox1ToBox2(boxesXpath+"[1]",boxesXpath+"[2]");
     }
 
-    @Test
+    /*  @Test
     public void dropDownFunctionality() throws InterruptedException {
         base = new BaseMethods(driver);
         String dropDownXpath="//a[text()='Dropdown']";

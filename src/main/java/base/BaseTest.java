@@ -1,42 +1,40 @@
 package base;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.Markup;
-import com.aventstack.extentreports.reporter.ExtentReporter;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Connection;
 import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class BaseTest extends Reporter{
     protected WebDriver driver;
     protected ExtentTest test;
-    ExtentReports report;
-    @BeforeMethod(alwaysRun = true)
-    protected void setUp(){
+
+    @BeforeMethod( alwaysRun = true)
+    protected void setUp(Method name){
         ChromeDriverFactory chFactory= new ChromeDriverFactory();
         driver=chFactory.createChromeBrowser();
-        test = startTestReport();
+        test = startTestReport(name.getName());
     }
     @AfterMethod(alwaysRun = true)
     protected void tearDown(ITestResult result) throws IOException {
-        driver.quit();
-        test.log(Status.INFO, "Test case passed is"+  result.getName());
-        String screenShotPath = Reporter.getScreenShot(driver, result.getName());
-        test.log(Status.INFO, (Markup) test.addScreenCaptureFromPath(screenShotPath));
+        reportSteps(result, driver);
         flushReport();
+        driver.quit();
         System.out.println("driver closed");
     }
+
 
     @DataProvider
     public Iterator<Object[]> fetchDataFromSheet() {
